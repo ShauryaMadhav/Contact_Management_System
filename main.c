@@ -4,7 +4,7 @@
 
 int choice;
 char name[20];
-int phone;
+long phone;
 char email[20];
 
 // ender variables
@@ -19,8 +19,6 @@ int main()
 	printf("\t\t======================");
 	printf("\n\t\t [1] Add new contact");
 	printf("\n\t\t [2] List all contacts");
-	printf("\n\t\t [3] Edit a contact");
-	printf("\n\t\t [4] Delete a contact");
 	printf("\n\t\t [0] Exit program");
 	printf("\n\t\t======================");
 
@@ -39,12 +37,12 @@ int main()
 		printf("Enter name: ");
 		scanf("%s", name);
 		printf("Enter phone number: ");
-		scanf("%d", &phone);
+		scanf("%ld", &phone);
 		printf("Enter email address: ");
 		scanf("%s", email);
 
 		FILE *contacts_file = fopen("contacts.dll", "a");
-		fprintf(contacts_file, "%s\t%d\t%s\n", name, phone, email);
+		fprintf(contacts_file, "%s\t%ld\t%s\n", name, phone, email);
 		fclose(contacts_file);
 
 		// ender
@@ -69,6 +67,11 @@ int main()
 		fclose(contacts_file);
 		break;
 	}
+
+	default:
+		printf("\nWrong option...");
+		return 0;
+		break;
 	}
 
 	if (ender_choice == 1)
@@ -80,6 +83,8 @@ int main()
 	{
 		exit(0);
 	}
+
+	printf("\nPress any key to exit..."); getch();
 
 	return 0;
 }
